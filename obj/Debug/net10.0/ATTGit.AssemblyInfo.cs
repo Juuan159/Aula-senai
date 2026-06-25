@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ATTGit")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9408bd15e0e6fb96469f009f07da327900833e33")]
 [assembly: System.Reflection.AssemblyProductAttribute("ATTGit")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ATTGit")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
