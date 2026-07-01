@@ -1,14 +1,14 @@
 namespace ATTGit.Fun;
     public class Funcionarios
 {
-    public string Nome { get; set; }  
-    public int Matricula { get; set; }
-    public string Cpf { get; set; }
-    public string Endereço { get; set; }    
-    public string IdF { get; set; }
-    public double Salario { get; set; }
-    public string IdD { get; set; }
-    public string DataN { get; set; }
+    public string Nome { get; set; } = string.Empty; 
+    public int Matricula { get; set; } 
+    public string Cpf { get; set; } = string.Empty;
+    public string Endereço { get; set; }  = string.Empty;  
+    public string IdF { get; set; } = string.Empty;
+    public double Salario { get; set; } 
+    public string IdD { get; set; } = string.Empty;
+    public string DataN { get; set; } = string.Empty;
 }
 
     public class FuncionarioService
@@ -28,12 +28,12 @@ namespace ATTGit.Fun;
 
             Console.WriteLine($"Entre com o nome do Funcionario:");
 
-            Contadorr.Nome = Console.ReadLine();
+            Contadorr.Nome = Console.ReadLine() ?? string.Empty;
 
             while(true)
         {
             Console.WriteLine("Entre com a Matricula:");
-            string matricula = Console.ReadLine();
+            string matricula = Console.ReadLine() ?? string.Empty;
 
             if (int.TryParse(matricula, out int MatrNum))
         {
@@ -55,7 +55,7 @@ namespace ATTGit.Fun;
             while(true)
         {   Verif Chamar = new Verif();
             Console.WriteLine("Entre com o CPF em Numeros:");
-            string cpf = Console.ReadLine();
+            string cpf = Console.ReadLine() ?? string.Empty;
 
             if (Chamar.ValidCpf(cpf))
         {
@@ -72,7 +72,7 @@ namespace ATTGit.Fun;
 
             Console.WriteLine("Entre com o Id do Funcionario:");
 
-            string idf = Console.ReadLine();
+            string idf = Console.ReadLine() ?? string.Empty;
 
             if (funcionarios.Any(d => d.IdF == idf))
         {
@@ -91,7 +91,7 @@ namespace ATTGit.Fun;
                             
             Console.WriteLine("Entre com a data de Nascimento EX(20102000)):");
 
-            data = Console.ReadLine();            
+            data = Console.ReadLine() ?? string.Empty;           
 
             if (Verif.ValidData(data))
         {
@@ -108,14 +108,14 @@ namespace ATTGit.Fun;
 
             Console.WriteLine("Entre com o endereço:");
 
-            Contadorr.Endereço = Console.ReadLine();
+            Contadorr.Endereço = Console.ReadLine() ?? string.Empty;
 
             Console.WriteLine("Entre com o Id do departamento:");
 
             while (true)
         {
-            Contadorr.IdD = Console.ReadLine();
-            Departamento departamento = departamentos.FirstOrDefault(d => d.Id == Contadorr.IdD);
+            Contadorr.IdD = Console.ReadLine() ?? string.Empty;
+            Departamento? departamento = departamentos.FirstOrDefault(d => d.Id == Contadorr.IdD);
             if (departamento != null)
         {
             break;    
@@ -129,7 +129,7 @@ namespace ATTGit.Fun;
             while(true)
         {    
             Console.WriteLine("Entre com o salarario:");
-            string salario = Console.ReadLine();
+            string salario = Console.ReadLine() ?? string.Empty;
 
             if (double.TryParse(salario, out double Salario))
         {
@@ -149,7 +149,7 @@ namespace ATTGit.Fun;
             while (true)
             {
                 Console.WriteLine("Digite um Número qualquer se deseja adicionar mais Funcinarios ou 0 se deseja encerrar:");
-                string entradaEsc = Console.ReadLine();
+                string entradaEsc = Console.ReadLine() ?? string.Empty;
 
                 if (int.TryParse(entradaEsc, out int esc))
                 {

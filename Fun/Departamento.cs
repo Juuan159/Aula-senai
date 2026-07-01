@@ -6,11 +6,11 @@ namespace ATTGit.Fun;
 
     public class Departamento   
 {
-    public string Id { get; set; }  
-    public string Nome { get; set; }
-    public string Sigla { get; set; }
-    public string Ramal { get; set; }    
-    public string IdGerente { get; set; } 
+    public string Id  { get; set; } = string.Empty;
+    public string Nome { get; set; } = string.Empty;
+    public string Sigla { get; set; } =  string.Empty;
+    public string Ramal { get; set; } = string.Empty;   
+    public string IdGerente { get; set; } = string.Empty;
 }
 
     public class DepartamentoService
@@ -32,7 +32,7 @@ namespace ATTGit.Fun;
             Departamento Contador = new Departamento();
 
             Console.WriteLine($"Entre com o Id do Departamento:!");
-            string id = Console.ReadLine();
+            string id = Console.ReadLine() ?? string.Empty;
 
             if (departamentos.Any(d => d.Id == id))
         {
@@ -43,16 +43,16 @@ namespace ATTGit.Fun;
 
             Console.WriteLine("Nome do Departamento:");
 
-            Contador.Nome = Console.ReadLine();
+            Contador.Nome = Console.ReadLine() ?? string.Empty;
 
             Console.WriteLine("Sigla do Departamento:");
 
-            Contador.Sigla = Console.ReadLine();
+            Contador.Sigla = Console.ReadLine() ?? string.Empty;
 
             while(true)
         {        
             Console.WriteLine("Entre com o Ramal(Numeros) do Departamento:");
-            string ramal = Console.ReadLine();
+            string ramal = Console.ReadLine() ?? string.Empty;
             if (int.TryParse(ramal, out int Ram))
         {
             Contador.Ramal = ramal;
@@ -69,7 +69,7 @@ namespace ATTGit.Fun;
             while (true)
             {
                 Console.WriteLine("Digite um Número qualquer se deseja adicionar mais um Departamento ou 0 se deseja encerrar:");
-                string entradaEsc = Console.ReadLine();
+                string entradaEsc = Console.ReadLine() ?? string.Empty;
 
                 if (int.TryParse(entradaEsc, out int esc))
                 {
@@ -95,14 +95,14 @@ namespace ATTGit.Fun;
     public void AlterarGerente(List<Funcionarios> funcionarios)
     {
         Console.WriteLine("Entre com o Id do Departamento que deseja alterar o gerente:");
-        string idDepartamento = Console.ReadLine();
-        Departamento departamento = departamentos.FirstOrDefault(d => d.Id == idDepartamento);
+        string idDepartamento = Console.ReadLine() ?? string.Empty;
+        Departamento? departamento = departamentos.FirstOrDefault(d => d.Id == idDepartamento);
 
         if (departamento != null)
         {
             Console.WriteLine("Entre com o Id do Novo Gerente:");
-            string idG = Console.ReadLine();
-            Funcionarios funcionario = funcionarios.FirstOrDefault(d => d.IdF == idG);
+            string idG = Console.ReadLine() ?? string.Empty;
+            Funcionarios? funcionario = funcionarios.FirstOrDefault(d => d.IdF == idG);
 
         if (funcionario != null)
         {

@@ -25,7 +25,15 @@ namespace ATTGit.Fun;
         
         Console.WriteLine("Escolha uma opcão");
 
-        int esc = int.Parse(Console.ReadLine());
+        string entrada = Console.ReadLine() ?? string.Empty;
+
+            
+        if (!int.TryParse(entrada, out int esc))
+    {
+        Console.WriteLine("Erro: Por favor, digite apenas números! De um ENTER para continuar!");
+        Console.ReadKey();
+        continue; 
+    }
 
         switch (esc)
         {
