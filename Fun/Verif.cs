@@ -36,9 +36,9 @@ public class Verif
             }
             return false;
     }
-    public bool ValidCpf(string n)
+    public static bool ValidCpf(string n)
     {
-        if (n.Length == 11)
+        if (n.Length == 11 && n.All(char.IsDigit))
         {
             return true; 
         }

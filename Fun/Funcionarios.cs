@@ -53,11 +53,11 @@ namespace ATTGit.Fun;
         }
         }
             while(true)
-        {   Verif Chamar = new Verif();
+        {   
             Console.WriteLine("Entre com o CPF em Numeros:");
             string cpf = Console.ReadLine() ?? string.Empty;
 
-            if (Chamar.ValidCpf(cpf))
+            if (Verif.ValidCpf(cpf))
         {
             Contadorr.Cpf = cpf;
             break;
