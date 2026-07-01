@@ -4,7 +4,7 @@ public class Verif
 {
     public static bool ValidData(string n)
     {
-            if (n.Length == 8 && int.TryParse(n, out int dataNum))
+            if (n.Length == 8 && int.TryParse(n, out _))
             {
                 int dia = int.Parse(n.Substring(0, 2));
                 int mes = int.Parse(n.Substring(2, 2));
@@ -35,6 +35,17 @@ public class Verif
                 }
             }
             return false;
+    }
+    public bool ValidCpf(string n)
+    {
+        if (n.Length == 11)
+        {
+            return true; 
+        }
+        else
+        {
+            return false;
+        }
     }
 }
 

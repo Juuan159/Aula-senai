@@ -9,7 +9,7 @@ namespace ATTGit.Fun;
     public string Id { get; set; }  
     public string Nome { get; set; }
     public string Sigla { get; set; }
-    public int Ramal { get; set; }    
+    public string Ramal { get; set; }    
     public string IdGerente { get; set; } 
 }
 
@@ -49,19 +49,46 @@ namespace ATTGit.Fun;
 
             Contador.Sigla = Console.ReadLine();
 
+            while(true)
+        {        
             Console.WriteLine("Entre com o Ramal(Numeros) do Departamento:");
-
-            Contador.Ramal = int.Parse(Console.ReadLine());
-
-            departamentos.Add(Contador);
-
-            Console.WriteLine("Digite um Número qualquer se deseja adicionar mais um Departamento ou 0 se deseja encerrar:");
-            int esc = int.Parse(Console.ReadLine());
-
-            if (esc == 0)
+            string ramal = Console.ReadLine();
+            if (int.TryParse(ramal, out int Ram))
         {
+            Contador.Ramal = ramal;
             break;
         }
+        else
+        {
+            Console.WriteLine("Entre com um ramal valido em apenas numeros!");        
+        }
+        }
+            departamentos.Add(Contador);
+            
+             bool querSair = false;
+            while (true)
+            {
+                Console.WriteLine("Digite um Número qualquer se deseja adicionar mais um Departamento ou 0 se deseja encerrar:");
+                string entradaEsc = Console.ReadLine();
+
+                if (int.TryParse(entradaEsc, out int esc))
+                {
+                    if (esc == 0)
+                    {
+                        querSair = true;
+                    }
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Erro: Digite um número válido!");
+                }
+            }
+
+            if (querSair)
+            {
+                break;
+            }
         }
     }
 

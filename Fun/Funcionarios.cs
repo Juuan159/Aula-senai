@@ -35,7 +35,7 @@ namespace ATTGit.Fun;
             Console.WriteLine("Entre com a Matricula:");
             string matricula = Console.ReadLine();
 
-            if (matricula.Length == 8 && int.TryParse(matricula, out int MatrNum))
+            if (int.TryParse(matricula, out int MatrNum))
         {
 
             if (funcionarios.Any(d => d.Matricula == MatrNum))
@@ -47,10 +47,28 @@ namespace ATTGit.Fun;
             Contadorr.Matricula = MatrNum;
             break;
         }
+            else
+        {
+            Console.WriteLine("Erro: Entre com os  Numeros de sua Matricula ! Tente outro.");      
         }
-            Console.WriteLine("Entre com o CPF");
+        }
+            while(true)
+        {   Verif Chamar = new Verif();
+            Console.WriteLine("Entre com o CPF em Numeros:");
+            string cpf = Console.ReadLine();
 
-            Contadorr.Cpf = Console.ReadLine();
+            if (Chamar.ValidCpf(cpf))
+        {
+            Contadorr.Cpf = cpf;
+            break;
+        }
+            else
+        {
+            Console.WriteLine("Entre com um  CPF valido em Numeros 11 digitos!");
+            continue;            
+        }
+        }
+        
 
             Console.WriteLine("Entre com o Id do Funcionario:");
 
@@ -108,19 +126,49 @@ namespace ATTGit.Fun;
         }
         }
             
+            while(true)
+        {    
             Console.WriteLine("Entre com o salarario:");
-            double salario = double.Parse(Console.ReadLine());
+            string salario = Console.ReadLine();
 
-            Contadorr.Salario = salario;
-
-            funcionarios.Add(Contadorr);
-
-            Console.WriteLine("Digite qualquer se deseja adicionar mais funcionarios ou  zero se deseja encerrar o cadastro:");
-            int esc = int.Parse(Console.ReadLine());
-            if (esc == 0)
+            if (double.TryParse(salario, out double Salario))
         {
+            Contadorr.Salario = Salario;
             break;
         }
+            else
+        {
+            Console.WriteLine("Entre com seu Salario!");
+            continue;            
+        }    
+        }
+            funcionarios.Add(Contadorr);
+
+                
+            bool querSair = false;
+            while (true)
+            {
+                Console.WriteLine("Digite um Número qualquer se deseja adicionar mais Funcinarios ou 0 se deseja encerrar:");
+                string entradaEsc = Console.ReadLine();
+
+                if (int.TryParse(entradaEsc, out int esc))
+                {
+                    if (esc == 0)
+                    {
+                        querSair = true;
+                    }
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Erro: Digite um número válido!");
+                }
+            }
+
+            if (querSair)
+            {
+                break;
+            }
         }
     }
-}    
+}

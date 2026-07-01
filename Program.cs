@@ -25,9 +25,9 @@ namespace ATTGit.Fun;
         
         Console.WriteLine("Escolha uma opcão");
 
-        int opcão = int.Parse(Console.ReadLine());
+        int esc = int.Parse(Console.ReadLine());
 
-        switch (opcão)
+        switch (esc)
         {
                     
         case 1:
@@ -48,7 +48,12 @@ namespace ATTGit.Fun;
         case 5:
             Console.WriteLine("Saindo do sistema... Até mais!");
             return;
-        }  
+        
+        default:
+            Console.WriteLine("Erro: Opção inválida! Escolha um número de 1 a 5. De ENTER para continuar!");
+            Console.ReadKey();
+            break;
+        }
     }
     }
 }
