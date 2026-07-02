@@ -31,7 +31,7 @@ namespace ATTGit.Fun;
             
             Departamento Contador = new Departamento();
 
-            Console.WriteLine($"Entre com o Id do Departamento:!");
+            Console.WriteLine($"Entre com o Id do Departamento:");
             string id = Console.ReadLine() ?? string.Empty;
 
             if (departamentos.Any(d => d.Id == id))
