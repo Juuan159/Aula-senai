@@ -26,13 +26,13 @@ namespace ATTGit.Fun;
         {
             Funcionarios Contadorr = new Funcionarios();
 
-            Console.WriteLine($"Entre com o nome do Funcionario:");
+            Console.WriteLine($"Entre com o nome do Funcionário:");
 
             Contadorr.Nome = Console.ReadLine() ?? string.Empty;
 
             while(true)
         {
-            Console.WriteLine("Entre com a Matricula:");
+            Console.WriteLine("Entre com a Matricula do Funcionário:");
             string matricula = Console.ReadLine() ?? string.Empty;
 
             if (int.TryParse(matricula, out int MatrNum))
@@ -40,7 +40,7 @@ namespace ATTGit.Fun;
 
             if (funcionarios.Any(d => d.Matricula == MatrNum))
         {
-            Console.WriteLine("Erro: Já existe um Funcionario cadastrado com esta Matricuça! Tente outro.");
+            Console.WriteLine("Erro: Já existe um Funcionário cadastrado com esta Matricula! Tente outro.");
             continue;
         }
         
@@ -49,12 +49,12 @@ namespace ATTGit.Fun;
         }
             else
         {
-            Console.WriteLine("Erro: Entre com os  Numeros de sua Matricula ! Tente outro.");      
+            Console.WriteLine("Erro: Entre com os  Números de sua Matricula! Tente outra vez.");      
         }
         }
             while(true)
         {   
-            Console.WriteLine("Entre com o CPF em Numeros:");
+            Console.WriteLine("Entre com o CPF em Números:");
             string cpf = Console.ReadLine() ?? string.Empty;
 
             if (Verif.ValidCpf(cpf))
@@ -64,19 +64,19 @@ namespace ATTGit.Fun;
         }
             else
         {
-            Console.WriteLine("Entre com um  CPF valido em Numeros 11 digitos!");
+            Console.WriteLine("Entre com um  CPF válido em Números 11 digitos!");
             continue;            
         }
         }
         
 
-            Console.WriteLine("Entre com o Id do Funcionario:");
+            Console.WriteLine("Entre com o Id do Funcionário:");
 
             string idf = Console.ReadLine() ?? string.Empty;
 
             if (funcionarios.Any(d => d.IdF == idf))
         {
-            Console.WriteLine("Erro: Já existe um Funcionario cadastrado com este Id! Tente outro.");
+            Console.WriteLine("Erro: Já existe um Funcionário cadastrado com este Id! Tente outro.");
             continue;
         }
 
@@ -89,7 +89,7 @@ namespace ATTGit.Fun;
             while(valido == false)
         {
                             
-            Console.WriteLine("Entre com a data de Nascimento EX(20102000)):");
+            Console.WriteLine("Entre com a data de Nascimento do Funcionário EX(20102000)):");
 
             data = Console.ReadLine() ?? string.Empty;           
 
@@ -99,7 +99,7 @@ namespace ATTGit.Fun;
         }
             else
         {
-            Console.WriteLine("Erro: Digite uma data válida com 8 caracteres! A data deve ser maior que 20/06/1950."); 
+            Console.WriteLine("Erro: Digite uma data válida com 8 caracteres! A data deve ser maior que 20/06/1950 e digita no formato do EX."); 
             continue;
         }
         }
@@ -128,7 +128,7 @@ namespace ATTGit.Fun;
             
             while(true)
         {    
-            Console.WriteLine("Entre com o salarario:");
+            Console.WriteLine("Entre com o salário:");
             string salario = Console.ReadLine() ?? string.Empty;
 
             if (double.TryParse(salario, out double Salario))
@@ -138,7 +138,7 @@ namespace ATTGit.Fun;
         }
             else
         {
-            Console.WriteLine("Entre com seu Salario!");
+            Console.WriteLine("Entre com seu Salário!");
             continue;            
         }    
         }
@@ -148,7 +148,7 @@ namespace ATTGit.Fun;
             bool querSair = false;
             while (true)
             {
-                Console.WriteLine("Digite um Número qualquer se deseja adicionar mais Funcinarios ou 0 se deseja encerrar:");
+                Console.WriteLine("Digite um Número qualquer se deseja adicionar mais Funcionário ou 0 se deseja encerrar:");
                 string entradaEsc = Console.ReadLine() ?? string.Empty;
 
                 if (int.TryParse(entradaEsc, out int esc))

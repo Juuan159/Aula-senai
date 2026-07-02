@@ -51,7 +51,7 @@ namespace ATTGit.Fun;
 
             while(true)
         {        
-            Console.WriteLine("Entre com o Ramal(Numeros) do Departamento:");
+            Console.WriteLine("Entre com o Ramal(Números) do Departamento:");
             string ramal = Console.ReadLine() ?? string.Empty;
             if (int.TryParse(ramal, out int Ram))
         {
@@ -60,7 +60,7 @@ namespace ATTGit.Fun;
         }
         else
         {
-            Console.WriteLine("Entre com um ramal valido em apenas numeros!");        
+            Console.WriteLine("Entre com um ramal válido em apenas números!");        
         }
         }
             departamentos.Add(Contador);
@@ -118,6 +118,6 @@ namespace ATTGit.Fun;
 
     public void ListarDepartamentos()
     {
-        // lógica para listar todos os departamentos
+        //lógica para listar todos os departamentos
     }
 }

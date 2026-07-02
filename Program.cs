@@ -18,13 +18,13 @@ namespace ATTGit.Fun;
         {
         Console.WriteLine("-------------MENU------------");
         Console.WriteLine("Se for o primeiro login escolha a opcão 1, Ja que não possui departamentos!");
-        Console.WriteLine("1. Cadastrar Departamento");
-        Console.WriteLine("2. Cadastrar Funcionário");   
-        Console.WriteLine("3. Relatórios");
+        Console.WriteLine("1. Cadastrar Departamento!");
+        Console.WriteLine("2. Cadastrar Funcionário!");   
+        Console.WriteLine("3. Relatórios!");
         Console.WriteLine("4. Vincular Gerente ao Departamento!");
-        Console.WriteLine("5. Sair");
+        Console.WriteLine("5. Sair!");
         
-        Console.WriteLine("Escolha uma opcão");
+        Console.WriteLine("Escolha uma opcão!");
 
         string entrada = Console.ReadLine() ?? string.Empty;
 
@@ -49,11 +49,11 @@ namespace ATTGit.Fun;
 
         case 3:
             Console.WriteLine("-------------MENU RELATÓRIOS------------");
-            Console.WriteLine("1. Consulta Funcionário por Matrícula");
-            Console.WriteLine("2. Folha de Pagamento");   
-            Console.WriteLine("3. Relatório por Departamento");
-            Console.WriteLine("4. Sair");
-            Console.WriteLine("Escolha uma opcão");
+            Console.WriteLine("1. Consulta Funcionário por Matrícula!");
+            Console.WriteLine("2. Folha de Pagamento!");   
+            Console.WriteLine("3. Relatório por Departamento!");
+            Console.WriteLine("4. Sair!");
+            Console.WriteLine("Escolha uma opcão!");
 
             string entrada1 = Console.ReadLine() ?? string.Empty;
             if (!int.TryParse(entrada1, out int esc1))
