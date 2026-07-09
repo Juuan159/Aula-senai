@@ -37,4 +37,24 @@ public class Relatorios
             Console.WriteLine($"Departamento: {dep.Nome}, Funcionários: {lista.Count}, Total Salários: R$ {total}");
         }
     }
+     public void HistoricoSalarialFuncionario(Funcionarios funcionario, DateTime inicio, DateTime fim)
+    {
+        Console.WriteLine($"Histórico salarial de {funcionario.Nome} entre {inicio:dd/MM/yyyy} e {fim:dd/MM/yyyy}:");
+        var historico = funcionario.HistoricoSalarios
+            .Where(h => h.DataAlteracao >= inicio && h.DataAlteracao <= fim);
+
+        foreach (var h in historico)
+        {
+            Console.WriteLine($"- {h.DataAlteracao:dd/MM/yyyy}: R$ {h.SalarioAnterior} → R$ {h.SalarioNovo} ({h.TipoAumento})");
+        }
+    }
+
+    public void ListaGerentesDepartamento(Departamento departamento)
+    {
+        Console.WriteLine($"Gerentes que já passaram pelo departamento {departamento.Nome}:");
+        foreach (var h in departamento.HistoricoGerentes)
+        {
+            Console.WriteLine($"- {h.IdGerente} em {h.DataAlteracao:dd/MM/yyyy}");
+        }
+    }
 }

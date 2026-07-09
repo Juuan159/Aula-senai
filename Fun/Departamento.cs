@@ -11,6 +11,19 @@ namespace ATTGit.Fun;
     public string Sigla { get; set; } =  string.Empty;
     public string Ramal { get; set; } = string.Empty;   
     public string IdGerente { get; set; } = string.Empty;
+
+    public List<HistoricoDepartamento> HistoricoGerentes { get; private set; }
+
+    public Departamento()
+    {
+        HistoricoGerentes = new List<HistoricoDepartamento>();
+    }
+}
+
+    public class HistoricoDepartamento
+{
+    public string IdGerente { get; set; } = string.Empty;
+    public DateTime DataAlteracao { get; set; }
 }
 
     public class DepartamentoService
@@ -107,6 +120,12 @@ namespace ATTGit.Fun;
         if (funcionario != null)
         {
             departamento.IdGerente = idG;
+
+            departamento.HistoricoGerentes.Add(new HistoricoDepartamento
+            {
+                IdGerente = idG,
+                DataAlteracao = DateTime.Now
+            });
             Console.WriteLine($"Gerente do departamento {departamento.Nome} alterado para {idG}.");
         }
         }
@@ -118,6 +137,9 @@ namespace ATTGit.Fun;
 
     public void ListarDepartamentos()
     {
-        //lógica para listar todos os departamentos
+        foreach (var dep in departamentos)
+    {
+        Console.WriteLine($"Id: {dep.Id}, Nome: {dep.Nome}, Sigla: {dep.Sigla}, Ramal: {dep.Ramal}, Gerente: {dep.IdGerente}");
+    }
     }
 }

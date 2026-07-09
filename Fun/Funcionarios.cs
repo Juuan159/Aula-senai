@@ -1,15 +1,70 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace ATTGit.Fun;
-    public class Funcionarios
+
+public class Funcionarios
 {
+    public string IdF { get; set; } = string.Empty;
     public string Nome { get; set; } = string.Empty; 
     public int Matricula { get; set; } 
     public string Cpf { get; set; } = string.Empty;
-    public string Endereço { get; set; }  = string.Empty;  
-    public string IdF { get; set; } = string.Empty;
+    public string Endereco { get; set; }  = string.Empty;  
     public double Salario { get; set; } 
     public string IdD { get; set; } = string.Empty;
     public string DataN { get; set; } = string.Empty;
+
+    public List<HistoricoCargo> HistoricoCargos { get; private set; }
+    public List<HistoricoSalario> HistoricoSalarios { get; private set; }
+
+    public Funcionarios()
+    {
+        HistoricoCargos = new List<HistoricoCargo>();
+        HistoricoSalarios = new List<HistoricoSalario>();
+    }
+
+    public void AlterarCargo(string novoCargo, string motivo)
+    {
+        HistoricoCargos.Add(new HistoricoCargo
+        {
+            CargoAnterior = this.IdD,
+            CargoNovo = novoCargo,
+            DataAlteracao = DateTime.Now,
+            Motivo = motivo
+        });
+        IdD = novoCargo;
+    }
+
+    public void AlterarSalario(double novoSalario, string tipoAumento)
+    {
+        HistoricoSalarios.Add(new HistoricoSalario
+        {
+            SalarioAnterior = this.Salario,
+            SalarioNovo = novoSalario,
+            DataAlteracao = DateTime.Now,
+            TipoAumento = tipoAumento
+        });
+        Salario = novoSalario;
+    }
 }
+
+public class HistoricoCargo
+{
+    public string CargoAnterior { get; set; } = string.Empty;
+    public string CargoNovo { get; set; } = string.Empty;
+    public DateTime DataAlteracao { get; set; }
+    public string Motivo { get; set; } = string.Empty;
+}
+
+    public class HistoricoSalario
+{
+    public double SalarioAnterior { get; set; }
+    public double SalarioNovo { get; set; }
+    public DateTime DataAlteracao { get; set; }
+    public string TipoAumento { get; set; } = string.Empty;
+}
+
 
     public class FuncionarioService
 {
@@ -24,127 +79,111 @@ namespace ATTGit.Fun;
     {
         while (true)
         {
-            Funcionarios Contadorr = new Funcionarios();
+            Funcionarios novoFuncionario = new Funcionarios();
 
-            Console.WriteLine($"Entre com o nome do Funcionário:");
-
-            Contadorr.Nome = Console.ReadLine() ?? string.Empty;
+            Console.WriteLine("Entre com o nome do Funcionário:");
+            novoFuncionario.Nome = Console.ReadLine() ?? string.Empty;
 
             while(true)
-        {
-            Console.WriteLine("Entre com a Matricula do Funcionário:");
-            string matricula = Console.ReadLine() ?? string.Empty;
+            {
+                Console.WriteLine("Entre com a Matricula do Funcionário:");
+                string matricula = Console.ReadLine() ?? string.Empty;
 
-            if (int.TryParse(matricula, out int MatrNum))
-        {
+                if (int.TryParse(matricula, out int MatrNum))
+                {
+                    if (funcionarios.Any(d => d.Matricula == MatrNum))
+                    {
+                        Console.WriteLine("Erro: Já existe um Funcionário cadastrado com esta Matricula! Tente outro.");
+                        continue;
+                    }
+                    novoFuncionario.Matricula = MatrNum;
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Erro: Entre com os números da Matricula!");      
+                }
+            }
 
-            if (funcionarios.Any(d => d.Matricula == MatrNum))
-        {
-            Console.WriteLine("Erro: Já existe um Funcionário cadastrado com esta Matricula! Tente outro.");
-            continue;
-        }
-        
-            Contadorr.Matricula = MatrNum;
-            break;
-        }
-            else
-        {
-            Console.WriteLine("Erro: Entre com os  Números de sua Matricula! Tente outra vez.");      
-        }
-        }
             while(true)
-        {   
-            Console.WriteLine("Entre com o CPF em Números:");
-            string cpf = Console.ReadLine() ?? string.Empty;
+            {   
+                Console.WriteLine("Entre com o CPF em Números:");
+                string cpf = Console.ReadLine() ?? string.Empty;
 
-            if (Verif.ValidCpf(cpf))
-        {
-            Contadorr.Cpf = cpf;
-            break;
-        }
-            else
-        {
-            Console.WriteLine("Entre com um  CPF válido em Números 11 digitos!");
-            continue;            
-        }
-        }
-        
+                if (Verif.ValidCpf(cpf))
+                {
+                    novoFuncionario.Cpf = cpf;
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("CPF inválido! Digite 11 dígitos.");
+                }
+            }
 
             Console.WriteLine("Entre com o Id do Funcionário:");
-
             string idf = Console.ReadLine() ?? string.Empty;
 
             if (funcionarios.Any(d => d.IdF == idf))
-        {
-            Console.WriteLine("Erro: Já existe um Funcionário cadastrado com este Id! Tente outro.");
-            continue;
-        }
-
-            Contadorr.IdF = idf;
+            {
+                Console.WriteLine("Erro: Já existe um Funcionário cadastrado com este Id! Tente outro.");
+                continue;
+            }
+            novoFuncionario.IdF = idf;
 
             bool valido = false;
-
             string data = "00000000";
-        
-            while(valido == false)
-        {
-                            
-            Console.WriteLine("Entre com a data de Nascimento do Funcionário EX(20102000)):");
-
-            data = Console.ReadLine() ?? string.Empty;           
-
-            if (Verif.ValidData(data))
-        {
-            valido = true;                     
-        }
-            else
-        {
-            Console.WriteLine("Erro: Digite uma data válida com 8 caracteres! A data deve ser maior que 20/06/1950 e digita no formato do EX."); 
-            continue;
-        }
-        }
-
-            Contadorr.DataN = data;
+            while(!valido)
+            {
+                Console.WriteLine("Entre com a data de Nascimento do Funcionário EX(20102000)):");
+                data = Console.ReadLine() ?? string.Empty;           
+                if (Verif.ValidData(data))
+                {
+                    valido = true;                     
+                }
+                else
+                {
+                    Console.WriteLine("Erro: Digite uma data válida com 8 caracteres!");
+                }
+            }
+            novoFuncionario.DataN = data;
 
             Console.WriteLine("Entre com o endereço:");
-
-            Contadorr.Endereço = Console.ReadLine() ?? string.Empty;
+            novoFuncionario.Endereco = Console.ReadLine() ?? string.Empty;
 
             Console.WriteLine("Entre com o Id do departamento:");
-
             while (true)
-        {
-            Contadorr.IdD = Console.ReadLine() ?? string.Empty;
-            Departamento? departamento = departamentos.FirstOrDefault(d => d.Id == Contadorr.IdD);
-            if (departamento != null)
-        {
-            break;    
-        }
-            else
-        {
-            Console.WriteLine("Departamento não encontrado.");       
-        }
-        }
-            
+            {
+                novoFuncionario.IdD = Console.ReadLine() ?? string.Empty;
+                Departamento? departamento = departamentos.FirstOrDefault(d => d.Id == novoFuncionario.IdD);
+                if (departamento != null)
+                {
+                    break;    
+                }
+                else
+                {
+                    Console.WriteLine("Departamento não encontrado.");       
+                }
+            }
+
             while(true)
-        {    
-            Console.WriteLine("Entre com o salário:");
-            string salario = Console.ReadLine() ?? string.Empty;
+            {    
+                Console.WriteLine("Entre com o salário:");
+                string salario = Console.ReadLine() ?? string.Empty;
 
-            if (double.TryParse(salario, out double Salario))
-        {
-            Contadorr.Salario = Salario;
-            break;
-        }
-            else
-        {
-            Console.WriteLine("Entre com seu Salário!");
-            continue;            
-        }    
-        }
-            funcionarios.Add(Contadorr);
+                if (double.TryParse(salario, out double Salario))
+                {
+                    novoFuncionario.Salario = Salario;
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Erro: Digite um valor válido!");
+                }    
+            }
 
-                
+            funcionarios.Add(novoFuncionario);
+
             bool querSair = false;
             while (true)
             {
